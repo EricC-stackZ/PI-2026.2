@@ -3,7 +3,7 @@ using UnityEngine;
 public class UiScript : MonoBehaviour
 {
     [SerializeField] // Vetor de objetos vazios para manipulação da UI no canvas...
-    GameObject[] menuInicial;
+    GameObject[] menuInicial; 
 
     [SerializeField]
     GameObject[] livroDeReceitas;
@@ -54,8 +54,6 @@ public class UiScript : MonoBehaviour
         livroDeReceitas[1].SetActive(false);
 
         livroDeReceitas[2].SetActive(true);
-
-        Time.timeScale = 0f;
     }
 
     public void FecharLivro() // Método para fechar a tela do livro de receitas...
@@ -65,8 +63,6 @@ public class UiScript : MonoBehaviour
         livroDeReceitas[1].SetActive(true);
 
         livroDeReceitas[2].SetActive(false);
-
-        Time.timeScale = 1f;
     }
 
     public void FecharJogo() // Método para fechar/sair do jogo...
