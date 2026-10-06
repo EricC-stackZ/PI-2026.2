@@ -597,9 +597,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 368819438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b5476e706c9bd46b82d6e246f140cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d108975d3e832e44b472d5f553754d3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InitialCut
+  m_EditorClassIdentifier: Assembly-CSharp::NextPage1
   cutSceneInicial: []
   cutScene1:
   - {fileID: 426626804}
@@ -608,7 +608,7 @@ MonoBehaviour:
   - {fileID: 155510460}
   - {fileID: 2017822564}
   - {fileID: 994465980}
-  avancarCut: {fileID: 1777533040}
+  avancarCena: {fileID: 1777533040}
   canvasPrincipal: {fileID: 1132819840}
 --- !u!1 &426626804
 GameObject:
@@ -2591,7 +2591,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 368819440}
-        m_TargetAssemblyTypeName: InitialCut, Assembly-CSharp
+        m_TargetAssemblyTypeName: NextPage1, Assembly-CSharp
         m_MethodName: AvancarCena1
         m_Mode: 1
         m_Arguments:
