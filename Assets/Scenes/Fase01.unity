@@ -119,6 +119,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &54614381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 54614382}
+  - component: {fileID: 54614383}
+  m_Layer: 0
+  m_Name: CursorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &54614382
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54614381}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.20594, y: -0.30069, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1381408955}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &54614383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54614381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08c5abe9c0d22a45b18c41aa338e395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorController
+  cursorAberto: {fileID: 2800000, guid: 55a866a6b1a1bec46ad35c6e2daa41c4, type: 3}
+  cursorFechado: {fileID: 2800000, guid: d1043a14033306945a6eff30bd1d8832, type: 3}
 --- !u!1 &88907688
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,9 +643,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 368819438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d108975d3e832e44b472d5f553754d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 191c636a58afbd841812f36df0f38549, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NextPage1
+  m_EditorClassIdentifier: Assembly-CSharp::NextPage
   cutSceneInicial: []
   cutScene1:
   - {fileID: 426626804}
@@ -607,8 +653,10 @@ MonoBehaviour:
   - {fileID: 915600591}
   - {fileID: 155510460}
   - {fileID: 2017822564}
-  - {fileID: 994465980}
-  avancarCena: {fileID: 1777533040}
+  - {fileID: 441706391}
+  cutScene2: []
+  cutScene3: []
+  cutScene4: []
   canvasPrincipal: {fileID: 1132819840}
 --- !u!1 &426626804
 GameObject:
@@ -1711,6 +1759,7 @@ Transform:
   m_Children:
   - {fileID: 776729686}
   - {fileID: 368819439}
+  - {fileID: 54614382}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1472368704
@@ -2591,7 +2640,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 368819440}
-        m_TargetAssemblyTypeName: NextPage1, Assembly-CSharp
+        m_TargetAssemblyTypeName: NextPage, Assembly-CSharp
         m_MethodName: AvancarCena1
         m_Mode: 1
         m_Arguments:
@@ -3208,6 +3257,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 609666533}
-  - {fileID: 1381408955}
   - {fileID: 1132819841}
   - {fileID: 88907692}
+  - {fileID: 1381408955}
