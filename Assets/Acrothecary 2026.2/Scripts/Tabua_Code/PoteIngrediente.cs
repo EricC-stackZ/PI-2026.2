@@ -9,7 +9,7 @@ public class PoteIngrediente : MonoBehaviour
     [Tooltip("Arraste o objeto TabuaManager da sua cena para aqui.")]
     public TabuaManager tabuaManager; 
 
-    [Header("Estoque (Mecânica 1)")]
+    [Header("Estoque (Mecânica 1)")] //estoque para cada ingrediente
     public int estoqueAtual = 10;
 
     // Esta função será chamada quando o jogador clicar no botão deste pote

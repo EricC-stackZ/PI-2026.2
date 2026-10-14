@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 9_PodePrata
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: "P\xF3 de Prata"
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 3904426208777893582, guid: e870b0f269a71694fbfb4cabf88b1cec, type: 3}
   requisitosDeIngredientes: 030000000700000005000000
   faseDesbloqueada: 2

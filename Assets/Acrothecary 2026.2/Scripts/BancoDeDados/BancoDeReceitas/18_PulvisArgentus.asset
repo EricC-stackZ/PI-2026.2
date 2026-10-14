@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 18_PulvisArgentus
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: Pulvis Argentus
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 8822202793862619139, guid: 090d25610ced83f4199b82b7261592f1, type: 3}
   requisitosDeIngredientes: 090000000a0000000c000000
   faseDesbloqueada: 3

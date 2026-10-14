@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 8_VioletaAmargo
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: Violeta Amargo
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 7426717990442911426, guid: 4a88ca970eebbe04f86b1b5c32e3c05f, type: 3}
   requisitosDeIngredientes: 020000000700000006000000
   faseDesbloqueada: 2

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 6_RosaPalida
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: "Rosa P\xE1lida"
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 7777084614989565977, guid: 920d7d49e7f02fe459e59d4a14fccd85, type: 3}
   requisitosDeIngredientes: 030000000700000008000000
   faseDesbloqueada: 2

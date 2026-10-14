@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 12_MisturaOcrea
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: Mistura Ocrea
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 5889786067756337203, guid: 0aa610192b8e4f74a8707bc7fbe8ac22, type: 3}
   requisitosDeIngredientes: 050000000700000008000000
   faseDesbloqueada: 2

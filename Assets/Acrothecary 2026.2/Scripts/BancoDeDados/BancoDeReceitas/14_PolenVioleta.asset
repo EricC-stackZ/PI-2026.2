@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 14_PolenVioleta
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: "P\xF3len Violeta"
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 964132141757449524, guid: fed095ab48037434199b2dfc85e83569, type: 3}
   requisitosDeIngredientes: 090000000b00000006000000
   faseDesbloqueada: 3

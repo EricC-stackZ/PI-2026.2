@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 3_ambarLiquido
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: "\xC2mbar L\xEDquido"
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 1179648979244953833, guid: b20b09f8b035c1346a4621b8ac26275b, type: 3}
   requisitosDeIngredientes: 040000000100000002000000
   faseDesbloqueada: 1

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 20_OleumIndicum
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: Oleum Indicum
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 2775087255193807850, guid: e7648503261c185498b57ad8cd3b31d4, type: 3}
   requisitosDeIngredientes: 0a0000000b0000000c000000
   faseDesbloqueada: 3

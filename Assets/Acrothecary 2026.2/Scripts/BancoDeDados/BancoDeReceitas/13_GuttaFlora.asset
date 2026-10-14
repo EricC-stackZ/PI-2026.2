@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 13_GuttaFlora
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: Gutta Flora
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 3353061626861270677, guid: de71a8c332aef43449d2cf33e12a8c23, type: 3}
   requisitosDeIngredientes: 090000000a00000001000000
   faseDesbloqueada: 3

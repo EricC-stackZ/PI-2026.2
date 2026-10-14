@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 4_LumenAureum
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: Lumen Aureum
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 1767601036969033139, guid: debb29094e0613e41aad3060ec11aaab, type: 3}
   requisitosDeIngredientes: 020000000300000004000000
   faseDesbloqueada: 1
