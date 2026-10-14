@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 5_SanguisCaeruleus
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: 'Sanguis Caeruleus '
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 8329404461191021707, guid: 7abdb6ac240d80644a0bfbae1e2bb183, type: 3}
   requisitosDeIngredientes: 010000000500000006000000
   faseDesbloqueada: 2

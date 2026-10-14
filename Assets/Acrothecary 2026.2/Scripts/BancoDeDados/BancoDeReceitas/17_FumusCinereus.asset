@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 17_FumusCinereus
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: Fumus Cinereus
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 3407582946219849533, guid: aebcd8ecb7a88304383cc4f905098299, type: 3}
   requisitosDeIngredientes: 090000000a0000000b000000
   faseDesbloqueada: 3

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 10_DouradoFrio
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: 'Dourado Frio '
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 2815782143845174527, guid: 23daa1b93a313c1449879919f805bf7e, type: 3}
   requisitosDeIngredientes: 020000000800000006000000
   faseDesbloqueada: 2

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 11_TurquesaDoce
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: Turquesa Doce
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 4526749566971083432, guid: 27202402cc0281748bef9dcb0cd5b78f, type: 3}
   requisitosDeIngredientes: 040000000600000005000000
   faseDesbloqueada: 2

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 19_ResinaCorallina
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: Resina Corallina
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 3135558921221475369, guid: 97e91f3dfceeced41a094c31fc592a90, type: 3}
   requisitosDeIngredientes: 090000000b0000000c000000
   faseDesbloqueada: 3

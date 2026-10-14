@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 1_VitaRubra
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: Vita Rubra
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 2030244840211472934, guid: 9633409f81b87e14d81e6652dcfd564a, type: 3}
   requisitosDeIngredientes: 010000000200000003000000
   faseDesbloqueada: 1

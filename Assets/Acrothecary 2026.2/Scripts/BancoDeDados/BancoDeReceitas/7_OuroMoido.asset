@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 7_OuroMoido
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: "Ouro Mo\xEDdo"
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 2615968538988486148, guid: 1cb7f5cffb48cc147b58ba88721044c4, type: 3}
   requisitosDeIngredientes: 040000000500000008000000
   faseDesbloqueada: 2

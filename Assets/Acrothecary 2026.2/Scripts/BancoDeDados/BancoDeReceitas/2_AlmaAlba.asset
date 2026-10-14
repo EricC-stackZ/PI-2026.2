@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 2_AlmaAlba
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: Alma Alba
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 8619064390475241071, guid: dba3326cfb6f6a948a6c0ea06bd29546, type: 3}
   requisitosDeIngredientes: 030000000400000001000000
   faseDesbloqueada: 1

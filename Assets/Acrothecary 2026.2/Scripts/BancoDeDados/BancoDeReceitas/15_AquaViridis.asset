@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 15_AquaViridis
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: ' Aqua Viridis'
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 4723051023097750586, guid: 51b81b5807068984b960b1d527575391, type: 3}
   requisitosDeIngredientes: 0a0000000c00000007000000
   faseDesbloqueada: 3

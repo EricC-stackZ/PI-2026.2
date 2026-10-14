@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 16_HerbaCitrina
   m_EditorClassIdentifier: Assembly-CSharp::MoldeReceita
   nomePorcao: Herba Citrina
-  porcaoSprite: {fileID: 0}
+  prefabDestaPocao: {fileID: 6428592623537058964, guid: b0f1989942ed8054f9f5430ba3814a53, type: 3}
   requisitosDeIngredientes: 0b0000000c00000008000000
   faseDesbloqueada: 3
