@@ -6,7 +6,12 @@ public class DraggableObject : MonoBehaviour
 {
     private bool estaArrastando;
 
-    private Vector3 offset;
+    private Vector3 offset; Vector3 pos;
+
+    private void Start()
+    {
+        pos = transform.position;
+    }
 
     private void Update()
     {
@@ -34,6 +39,8 @@ public class DraggableObject : MonoBehaviour
         if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
             estaArrastando = false;
+
+            transform.position = pos;
         }
     }
 }
