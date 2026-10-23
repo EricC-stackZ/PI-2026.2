@@ -15,7 +15,7 @@ public class TransitionController : MonoBehaviour
         public static int avancarCena = 0;
     }
 
-    private void Update()
+    private void Update() // Código de Teste
     {
         if(Keyboard.current == null) return;
 
