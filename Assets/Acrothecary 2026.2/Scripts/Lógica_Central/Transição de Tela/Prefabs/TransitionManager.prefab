@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad027104bec079844a213190f76814ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TransitionController
+  canvasSecundario: {fileID: 0}
+  transiTela:
+  - {fileID: 7350755591444979600, guid: ffc7e809fc7c82d47a1d56b6f1a95006, type: 3}
+  - {fileID: 821230355614276643, guid: 83a38508c9454de4899b751424549b00, type: 3}
