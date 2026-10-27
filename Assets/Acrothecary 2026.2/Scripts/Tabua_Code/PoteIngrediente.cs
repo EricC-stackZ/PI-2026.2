@@ -1,35 +1,106 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro; // Biblioteca essencial para usar o TextMeshPro (O texto do Unity)
+using System.Collections;
 
 public class PoteIngrediente : MonoBehaviour
 {
     [Header("Configuração do Pote")]
-    [Tooltip("Escolha qual é o ingrediente que este pote vai deitar na tábua.")]
     public IngredientType tipoDesteIngrediente; 
-    
-    [Tooltip("Arraste o objeto TabuaManager da sua cena para aqui.")]
     public TabuaManager tabuaManager; 
 
-    [Header("Estoque (Mecânica 1)")] //estoque para cada ingrediente
+    [Header("Estoque (Mecânica 1)")] 
+    public int estoqueMaximo = 10;
     public int estoqueAtual = 10;
+    private int quantidadePorRecarga = 3; 
 
-    // Esta função será chamada quando o jogador clicar no botão deste pote
-    public void ClicarNoPote()
+    [Header("Interface Visual")]
+    [Tooltip("Arraste o texto (TextMeshPro) que fica em cima da bolinha aqui")]
+    public TextMeshProUGUI textoContador; // O texto que vai mostrar "10", "9" ou "3", "2", "1"
+
+    [Header("Botões")]
+    public Button botaoUsar; 
+    public Button botaoRecarregar; 
+
+    private bool emRecarga = false;
+
+    void Start()
     {
-        // 1. Verifica se ainda há ingredientes no frasco
+        AtualizarTextoEstoque();
+    }
+
+    // --- FUNÇÃO 1: USAR O INGREDIENTE ---
+    public void UsarIngrediente()
+    {
+        if (emRecarga) return;
+
         if (estoqueAtual > 0)
         {
-            // 2. Envia a informação para o cérebro da tábua
             tabuaManager.AdicionarIngrediente(tipoDesteIngrediente);
+            estoqueAtual--; 
             
-            // 3. Reduz o stock em 1 unidade
-            estoqueAtual--;
-            
-            Debug.Log("Restam " + estoqueAtual + " de " + tipoDesteIngrediente);
+            AtualizarTextoEstoque(); 
+            Debug.Log($"[VISUAL] Usou 1 {tipoDesteIngrediente}. Restam: {estoqueAtual}");
         }
         else
         {
-            // Se chegar a zero, bloqueia o clique (a mecânica do timer de 3s farei depois)
-            Debug.Log("Estoque Vazio! Aguarde a recarga.");
+            Debug.Log("[VISUAL] Estoque Vazio! Você precisa recarregar.");
+        }
+    }
+
+    // --- FUNÇÃO 2: INICIAR A RECARGA ---
+    public void IniciarRecarga()
+    {
+        if (estoqueAtual == estoqueMaximo || emRecarga) return;
+
+        StartCoroutine(RotinaDeRecarga());
+    }
+
+    // --- FUNÇÃO 3: O TIMER INVISÍVEL E VISUAL (A Coroutine) ---
+    private IEnumerator RotinaDeRecarga()
+    {
+        emRecarga = true; 
+        
+        if(botaoUsar != null) botaoUsar.interactable = false; 
+        if(botaoRecarregar != null) botaoRecarregar.interactable = false;
+        
+        if (textoContador != null)
+        { 
+            // O Unity escreve os números do timer automaticamente
+            textoContador.text = "3";
+            yield return new WaitForSeconds(1f);
+            
+            textoContador.text = "2";
+            yield return new WaitForSeconds(1f);
+            
+            textoContador.text = "1";
+            yield return new WaitForSeconds(1f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(3f);
+        }
+        
+        // Matemática da Recarga
+        int espacoVazio = estoqueMaximo - estoqueAtual; 
+        int totalAAdicionar = Mathf.Min(quantidadePorRecarga, espacoVazio);
+        estoqueAtual += totalAAdicionar;
+
+        // Fim da Recarga
+        if(botaoUsar != null) botaoUsar.interactable = true; 
+        if(botaoRecarregar != null) botaoRecarregar.interactable = true;
+        emRecarga = false; 
+        
+        AtualizarTextoEstoque();
+    }
+
+    // --- FUNÇÃO 4: O ATUALIZADOR DO TEXTO ---
+    private void AtualizarTextoEstoque()
+    {
+        if (textoContador != null)
+        {
+            // O '.ToString()' converte o número da matemática num texto que o Unity consegue ler
+            textoContador.text = estoqueAtual.ToString();
         }
     }
 }
