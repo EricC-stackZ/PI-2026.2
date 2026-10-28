@@ -5,26 +5,28 @@ using System.Collections.Generic;
 public class ClienteSpawner : MonoBehaviour
 {
     [Header("Configuração de Spawn")]
-    public GameObject[] npcsPrefabs; 
-    public Transform[] posicoesBalcao; 
+    public GameObject[] npcsPrefabs; //Adiciona as prefabs dos clientes
+    public Transform[] posicoesBalcao; //Adiciona onde os clientes vão nascer
 
     [Header("Regras da Fase")]
-    public int totalClientesDaFase = 4; 
-    public float tempoEntreClientes = 5f; 
+    public int totalClientesDaFase = 4; //Total de clientes da fase
+    public float tempoEntreClientes = 5f; //Tempo para aparecer um novo cliente
     
     [Header("Catálogo de Receitas desta Fase")]
-    [Tooltip("Coloque aqui APENAS as poções liberadas nesta fase específica.")]
-    public Sprite[] receitasDestaFase; // NOVO: A lista agora fica no Spawner!
+    public Sprite[] receitasDestaFase; //Remedios que os clientes vão pedir
 
-    private Queue<GameObject> filaDeEspera = new Queue<GameObject>();
+    private Queue<GameObject> filaDeEspera = new Queue<GameObject>(); //Fila dos clientes
 
     void Start()
     {
+        // --- PARA ERIC ---
+        // Aqui o jogo começa. pode adicionar a meta de clientes a ser atendidos aqui
+
         PrepararFilaDeClientes();
         StartCoroutine(RotinaDeSpawn());
     }
 
-    private void PrepararFilaDeClientes()
+    private void PrepararFilaDeClientes() //Sorteio do npc que vai aparecer pelo indice
     {
         for (int i = 0; i < totalClientesDaFase; i++)
         {
@@ -39,27 +41,22 @@ public class ClienteSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(tempoEntreClientes);
 
-            if (ObterPosicaoVazia() != null && filaDeEspera.Count > 0)
+            if (ObterPosicaoVazia() != null && filaDeEspera.Count > 0) //Enquanto não tiver clientes, chama mais 1
             {
                 ChamarProximoCliente();
             }
         }
-        Debug.Log("[SPAWNER] Expediente encerrado!");
     }
 
-    private void ChamarProximoCliente()
+    private void ChamarProximoCliente() //Metodo para chamar cliente
     {
         Transform posicaoVazia = ObterPosicaoVazia();
         if (posicaoVazia == null) return; 
 
-        // 1. Instancia o NPC
         GameObject prefabDoProximo = filaDeEspera.Dequeue();
         GameObject novoCliente = Instantiate(prefabDoProximo, posicaoVazia);
 
-        // 2. Sorteia a receita baseada na lista DESTA FASE
         Sprite receitaSorteada = receitasDestaFase[Random.Range(0, receitasDestaFase.Length)];
-
-        // 3. Envia a receita sorteada para o script do NPC exibir no balão
         novoCliente.GetComponent<Npcs_Code>().ConfigurarPedido(receitaSorteada);
     }
 
