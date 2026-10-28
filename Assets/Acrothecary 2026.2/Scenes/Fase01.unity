@@ -1016,6 +1016,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClienteSpawner
   npcsPrefabs:
   - {fileID: 8771926266198971419, guid: 88bdfe78796d5f141ac40a1df61ab525, type: 3}
+  - {fileID: 8771926266198971419, guid: dd99200eb6a13ff48b4770cf6c9edc91, type: 3}
+  - {fileID: 8771926266198971419, guid: 5bb5c9a6587319e4aa402011443fc2d3, type: 3}
+  - {fileID: 8771926266198971419, guid: aa3b8b05f4f84364aa37548262ec69bf, type: 3}
+  - {fileID: 8771926266198971419, guid: a5594a22a01dd754eac433db0f3c4ce4, type: 3}
+  - {fileID: 8771926266198971419, guid: a9321705eb92f2c49ad629e98c8f1f6f, type: 3}
+  - {fileID: 8771926266198971419, guid: 9c6aa86f1079b4c479592de4f181928c, type: 3}
+  - {fileID: 8771926266198971419, guid: 7a1e91f53037b72488217505120e337b, type: 3}
+  - {fileID: 8771926266198971419, guid: 321053d7d0b2b3d4db7e4cbb0ae7f12b, type: 3}
+  - {fileID: 8771926266198971419, guid: 1004b00ef8617dc4a8dd9682588b3e78, type: 3}
   posicoesBalcao:
   - {fileID: 1188964559}
   - {fileID: 1793076582}
