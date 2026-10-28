@@ -6,7 +6,7 @@ using System.Collections;
 public class PoteIngrediente : MonoBehaviour
 {
     [Header("Configuração do Pote")]
-    public IngredientType tipoDesteIngrediente; 
+    public IngredientType tipoDesteIngrediente; //Lista de ingredientes
     public TabuaManager tabuaManager; 
 
     [Header("Estoque (Mecânica 1)")] 

@@ -4,39 +4,30 @@ using System.Collections.Generic;
 public class TabuaManager : MonoBehaviour
 {
     [Header("Configurações")]
-    public ListaDePorcao bancoDeReceitas; //Lista das porções e seus ingredientes
+    public ListaDePorcao bancoDeReceitas; //Lista com as 20 porções
 
     [Header("A Grande Ponte (Módulo 2)")]
     public Transform localDeSpawnDaPocao; //Pega a posição que o remedio pronto aparece
 
     [Header("UI Visual (As Vasilhas no Balcão)")]
-    public GameObject[] imagensVasilhas; //Imagens do pote cheio e etc
+    public GameObject[] imagensVasilhas; //Imagens do pote cheio etc
 
     private Stack<IngredientType> ingredientesNaTabua = new Stack<IngredientType>(); //Pilha para receber os ingredientes clicados
 
-    public void AdicionarIngrediente(IngredientType novoIngrediente)
+    public void AdicionarIngrediente(IngredientType novoIngrediente)//Metodo baseado na lista de ingredientes
     {
-        if (ingredientesNaTabua.Count < 3) 
+        if (ingredientesNaTabua.Count < 3) //Verifica se a pilha tá vazia
         {
-            ingredientesNaTabua.Push(novoIngrediente); 
+            ingredientesNaTabua.Push(novoIngrediente); //Adiciona o ingrediente clicado
+
             imagensVasilhas[ingredientesNaTabua.Count - 1].SetActive(true); //Adiciona a imagem do pote enchendo
             
             Debug.Log($"[VISUAL] Vasilha {ingredientesNaTabua.Count} encheu com: {novoIngrediente}");
 
-            if (ingredientesNaTabua.Count == 3) //se preencher tudo, verifica se tem porção
+            if (ingredientesNaTabua.Count == 3) //se preencher tudo, verifica a receita
             {
                 VerificarReceita(); 
             }
-        }
-    }
-
-    public void RemoverUltimoIngrediente()//Botão de remover ingrediente
-    {
-        if (ingredientesNaTabua.Count > 0)
-        {
-            imagensVasilhas[ingredientesNaTabua.Count - 1].SetActive(false); //Troca imagem de pode enchendo pra esvaziando
-            IngredientType removido = ingredientesNaTabua.Pop(); //Remove da pilha
-            Debug.Log($"[VISUAL] Lixeira: {removido} removido.");
         }
     }
 
@@ -44,7 +35,7 @@ public class TabuaManager : MonoBehaviour
     {
         bool receitaEncontrada = false;
 
-        foreach (MoldeReceita receita in bancoDeReceitas.todasAsReceitas)
+        foreach (MoldeReceita receita in bancoDeReceitas.todasAsReceitas) //Vasculha todas as receitas
         {
             if (ReceitaBate(receita)) //chama o verificador para ver se retorna true ou false
             {
@@ -72,6 +63,27 @@ public class TabuaManager : MonoBehaviour
         }
     }
 
+    private bool ReceitaBate(MoldeReceita receita) //Função para verificar se os ingredientes bate com os que estão configurados
+    {
+        List<IngredientType> copiaRequisitos = new List<IngredientType>(receita.requisitosDeIngredientes); //Lista que recebe a copia de ingredientes selecionados
+        foreach (IngredientType ing in ingredientesNaTabua)
+        {
+            if (copiaRequisitos.Contains(ing)) copiaRequisitos.Remove(ing); //Verifica se tem algum requisito que se enquadra
+            else return false; //Se não bater, retorna false
+        }
+        return copiaRequisitos.Count == 0; //Se bater, retorna true e limpa a lista de copia para uma nova verificação
+    }
+
+    public void RemoverUltimoIngrediente()//Botão de remover ingrediente
+    {
+        if (ingredientesNaTabua.Count > 0)
+        {
+            imagensVasilhas[ingredientesNaTabua.Count - 1].SetActive(false); //Troca imagem de pode enchendo pra esvaziando
+            IngredientType removido = ingredientesNaTabua.Pop(); //Remove da pilha
+            Debug.Log($"[VISUAL] Lixeira: {removido} removido.");
+        }
+    }
+
     private void LimparMesa() //função de tirar todas as imagens e ingredientes
     {
         foreach (GameObject vasilha in imagensVasilhas)
@@ -79,16 +91,5 @@ public class TabuaManager : MonoBehaviour
             vasilha.SetActive(false);
         }
         ingredientesNaTabua.Clear(); 
-    }
-
-    private bool ReceitaBate(MoldeReceita receita) //Função para verificar se os ingredientes bate com os que estão configurados
-    {
-        List<IngredientType> copiaRequisitos = new List<IngredientType>(receita.requisitosDeIngredientes);
-        foreach (IngredientType ing in ingredientesNaTabua)
-        {
-            if (copiaRequisitos.Contains(ing)) copiaRequisitos.Remove(ing);
-            else return false; 
-        }
-        return copiaRequisitos.Count == 0; 
     }
 }
