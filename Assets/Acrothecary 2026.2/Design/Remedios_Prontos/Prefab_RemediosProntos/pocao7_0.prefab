@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508f30a98f2381249b72d2234a9ee6fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableObject
+  spriteDestaPocao: {fileID: -6641731100767021632, guid: 5619fff5c23ef284dbd0ac3bea7377f1, type: 3}
 --- !u!61 &7031152236421742989
 BoxCollider2D:
   m_ObjectHideFlags: 0
