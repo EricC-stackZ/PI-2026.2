@@ -5,15 +5,11 @@ public class UiScript : MonoBehaviour
     [SerializeField] // Vetor de objetos vazios para manipulação da UI no canvas...
     private GameObject[] menuInicial; // Índice 0 = Botões do Menu || Índice 1 = Canvas Principal do Menu || Índice 2 = Mostrar Créditos
 
-    public GameObject tela1;
-
-    public Transform canvasSecundario;
+    public GameObject canvasSecundario;
 
     public void IniciarJogo() // Método para desativar os botões do menu e a imagem de fundo...
     {
-        menuInicial[1].SetActive(false);
-
-        GameObject telas = Instantiate(tela1, canvasSecundario); telas.transform.localPosition = Vector3.zero;
+        menuInicial[1].SetActive(false); canvasSecundario.SetActive(true);
     }
 
     public void MostrarCreditos() // Método para mostrar a tela de créditos e desativar os botões do menu...
