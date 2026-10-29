@@ -14,8 +14,17 @@ public class TabuaManager : MonoBehaviour
 
     private Stack<IngredientType> ingredientesNaTabua = new Stack<IngredientType>(); //Pilha para receber os ingredientes clicados
 
-    public void AdicionarIngrediente(IngredientType novoIngrediente)//Metodo baseado na lista de ingredientes
+    private GameObject porcaoPronta; //Variável para armazenar a porção pronta
+
+    
+    public bool AdicionarIngrediente(IngredientType novoIngrediente)//Metodo baseado na lista de ingredientes
     {
+        if(porcaoPronta != null) //Verifica se a porção já foi criada
+        {
+            Debug.Log("[VISUAL ERRO] Porção já criada. Limpe a mesa antes de adicionar novos ingredientes.");
+            return false; //Não aceita mais ingredientes se a porção já foi criada
+        }
+
         if (ingredientesNaTabua.Count < 3) //Verifica se a pilha tá vazia
         {
             ingredientesNaTabua.Push(novoIngrediente); //Adiciona o ingrediente clicado
@@ -28,7 +37,10 @@ public class TabuaManager : MonoBehaviour
             {
                 VerificarReceita(); 
             }
+
+            return true; //Retorna true se o ingrediente foi aceito
         }
+        return false; //Retorna false se a pilha estiver cheia e não aceitar mais ingredientes
     }
 
     private void VerificarReceita() //Verifica se a receita bate com os ingredientes da porção
@@ -44,11 +56,11 @@ public class TabuaManager : MonoBehaviour
                 
                 if(receita.prefabDestaPocao != null && localDeSpawnDaPocao != null) //Instancia a prefab para que a porção armazenada apareça
                 {
-                    Instantiate(receita.prefabDestaPocao, localDeSpawnDaPocao.position, Quaternion.identity);
+                    porcaoPronta = Instantiate(receita.prefabDestaPocao, localDeSpawnDaPocao.position, Quaternion.identity);
                 }
                 else
                 {
-                     Debug.LogWarning("Atenção: O Prefab da poção ou o Local de Spawn não estão configurados no Inspector!");
+                    Debug.LogWarning("Atenção: O Prefab da poção ou o Local de Spawn não estão configurados no Inspector!");
                 }
                 
                 LimparMesa();
@@ -76,6 +88,12 @@ public class TabuaManager : MonoBehaviour
 
     public void RemoverUltimoIngrediente()//Botão de remover ingrediente
     {
+        if(porcaoPronta != null) //Verifica se a porção já foi criada
+        {
+            Debug.Log("[VISUAL ERRO] Porção já criada. Limpe a mesa antes de adicionar novos ingredientes.");
+            return;
+        }
+
         if (ingredientesNaTabua.Count > 0)
         {
             imagensVasilhas[ingredientesNaTabua.Count - 1].SetActive(false); //Troca imagem de pode enchendo pra esvaziando

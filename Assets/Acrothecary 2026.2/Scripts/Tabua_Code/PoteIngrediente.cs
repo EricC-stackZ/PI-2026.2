@@ -36,11 +36,14 @@ public class PoteIngrediente : MonoBehaviour
 
         if (estoqueAtual > 0)
         {
-            tabuaManager.AdicionarIngrediente(tipoDesteIngrediente);
-            estoqueAtual--; 
-            
+            bool ingredienteFoiAceito =  tabuaManager.AdicionarIngrediente(tipoDesteIngrediente); // Tenta adicionar o ingrediente na tabua e recebe se foi aceito ou não
+
+            if (ingredienteFoiAceito) // Se o ingrediente foi aceito, diminui o estoque
+            {
+            estoqueAtual--;
             AtualizarTextoEstoque(); 
             Debug.Log($"[VISUAL] Usou 1 {tipoDesteIngrediente}. Restam: {estoqueAtual}");
+            }
         }
         else
         {
