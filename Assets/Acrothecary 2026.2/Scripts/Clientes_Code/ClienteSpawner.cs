@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class ClienteSpawner : MonoBehaviour
 {
@@ -17,13 +18,27 @@ public class ClienteSpawner : MonoBehaviour
 
     private Queue<GameObject> filaDeEspera = new Queue<GameObject>(); //Fila dos clientes
 
+    [Header("Controle do Jogo")]
+    public bool Onjogo = false; //Pausa o jogo até apertar espaço
+
     void Start()
     {
         // --- PARA ERIC ---
         // Aqui o jogo começa. pode adicionar a meta de clientes a ser atendidos aqui
-
-        PrepararFilaDeClientes();
+        PrepararFilaDeClientes(); 
         StartCoroutine(RotinaDeSpawn());
+
+    }
+
+    void Update()
+    {
+        // --- PARA ERIC ---
+        // Aqui o jogo começa. pode adicionar a meta de clientes a ser atendidos aqui
+
+       if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            Onjogo = true; Debug.Log("Jogo Ativado");
+        }
     }
 
     private void PrepararFilaDeClientes() //Sorteio do npc que vai aparecer pelo indice
@@ -37,7 +52,9 @@ public class ClienteSpawner : MonoBehaviour
 
     private IEnumerator RotinaDeSpawn()
     {
-        while (filaDeEspera.Count > 0 || ClientesNoBalcao() > 0) 
+        yield return new WaitUntil(() => Onjogo == true); //Espera o jogo começar
+
+            while (filaDeEspera.Count > 0 || ClientesNoBalcao() > 0) 
         {
             yield return new WaitForSeconds(tempoEntreClientes);
 
@@ -46,6 +63,7 @@ public class ClienteSpawner : MonoBehaviour
                 ChamarProximoCliente();
             }
         }
+        
     }
 
     private void ChamarProximoCliente() //Metodo para chamar cliente
