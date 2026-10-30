@@ -6,95 +6,109 @@ using UnityEngine.InputSystem;
 public class ClienteSpawner : MonoBehaviour
 {
     [Header("Configuração de Spawn")]
-    public GameObject[] npcsPrefabs; //Adiciona as prefabs dos clientes
-    public Transform[] posicoesBalcao; //Adiciona onde os clientes vão nascer
+    public GameObject[] npcsPrefabs; // Lista com os "corpos" dos clientes pra sortear
+    public Transform[] posicoesBalcao; // Cadeiras vazias onde o cliente vai sentar/aparecer
 
     [Header("Regras da Fase")]
-    public int totalClientesDaFase = 4; //Total de clientes da fase
-    public float tempoEntreClientes = 5f; //Tempo para aparecer um novo cliente
+    public int totalClientesDaFase = 4; // (Por enquanto o código ignora isso e roda infinito pros testes)
+    public float tempoEntreClientes = 5f; // Segundos que o jogo espera pra chamar o próximo
     
     [Header("Catálogo de Receitas desta Fase")]
-    public Sprite[] receitasDestaFase; //Remedios que os clientes vão pedir
+    public Sprite[] receitasDestaFase; // Lista de imagens das poções que eles podem pedir aqui
 
-    private Queue<GameObject> filaDeEspera = new Queue<GameObject>(); //Fila dos clientes
+    [Header("Dificuldade da Fase")]
+    public float pacienciaDaFase = 20f; // Tempo (em segundos) que a barra do NPC vai durar nesta fase
 
     [Header("Controle do Jogo")]
-    public bool Onjogo = false; //Pausa o jogo até apertar espaço
+    public bool Onjogo = false; // Trava o nascimento de clientes até o tutorial fechar (espaço)
 
     void Start()
     {
-        // --- PARA ERIC ---
-        // Aqui o jogo começa. pode adicionar a meta de clientes a ser atendidos aqui
-        PrepararFilaDeClientes(); 
+        // Dá a largada no cronômetro invisível que fica verificando se pode chamar o próximo
         StartCoroutine(RotinaDeSpawn());
-
     }
 
     void Update()
     {
         // --- PARA ERIC ---
-        // Aqui o jogo começa. pode adicionar a meta de clientes a ser atendidos aqui
+        // Faça a verificação contínua aqui: cheque se o jogador atingiu a meta de clientes atendidos (Vitória) 
+        // ou se ele perdeu as 3 vidas (Derrota), e chame as telas correspondentes.
 
-       if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        // --- GATILHO TEMPORÁRIO PARA TESTES ---
+        // Aperta ESPAÇO para destravar o jogo e ligar a música
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            Onjogo = true; Debug.Log("Jogo Ativado");
-            AudioManager.instance.IniciarMusicaFundo(); //Inicia a música de fundo (Eric usa essa função no AudioManager.cs)
-        }
-    }
-
-    private void PrepararFilaDeClientes() //Sorteio do npc que vai aparecer pelo indice
-    {
-        for (int i = 0; i < totalClientesDaFase; i++)
-        {
-            int indexSorteado = Random.Range(0, npcsPrefabs.Length);
-            filaDeEspera.Enqueue(npcsPrefabs[indexSorteado]); 
+            Onjogo = true; 
+            Debug.Log("Jogo Ativado");
+            AudioManager.instance.IniciarMusicaFundo(); // Chama a música de fundo lá do AudioManager
         }
     }
 
     private IEnumerator RotinaDeSpawn()
     {
-        yield return new WaitUntil(() => Onjogo == true); //Espera o jogo começar
+        // O jogo fica congelado aqui até a variável Onjogo virar true (quando aperta espaço)
+        yield return new WaitUntil(() => Onjogo == true); 
 
-            while (filaDeEspera.Count > 0 || ClientesNoBalcao() > 0) 
+        // Loop infinito: vai rodar pra sempre até a cena ser reiniciada
+        // --- PARA ERIC: Quando a sua condição de vitória ou derrota for atingida, lembre de interromper a geração de clientes aqui ---
+        while (true) 
         {
+            // Espera o tempo definido (ex: 3, 4 ou 5 segundos) antes de tentar chamar o próximo
             yield return new WaitForSeconds(tempoEntreClientes);
 
-            if (ObterPosicaoVazia() != null && filaDeEspera.Count > 0) //Enquanto não tiver clientes, chama mais 1
+            // Só verifica se tem alguma cadeira vazia. Se tiver, manda entrar na hora!
+            if (ObterPosicaoVazia() != null) 
             {
                 ChamarProximoCliente();
             }
         }
-        
     }
 
-    private void ChamarProximoCliente() //Metodo para chamar cliente
+    private void ChamarProximoCliente() 
     {
+        // Busca qual das posições do balcão está vazia
         Transform posicaoVazia = ObterPosicaoVazia();
+        
+        // Se estiver lotado, aborta a missão e não nasce ninguém
         if (posicaoVazia == null) return; 
 
-        GameObject prefabDoProximo = filaDeEspera.Dequeue();
-        GameObject novoCliente = Instantiate(prefabDoProximo, posicaoVazia);
+        // Sorteia a aparência (prefab) do NPC na hora que ele vai nascer
+        GameObject prefabSorteado = npcsPrefabs[Random.Range(0, npcsPrefabs.Length)];
+        
+        // Faz o corpo dele aparecer de fato no balcão, na cadeira vazia que achamos
+        GameObject novoCliente = Instantiate(prefabSorteado, posicaoVazia);
 
+        // --- INJEÇÃO DE DADOS NO NPC ---
+        // 1. Manda o tempo de paciência dessa fase pra barra dele
+        novoCliente.GetComponent<Npcs_Code>().DefinirPaciencia(pacienciaDaFase);
+
+        // 2. Sorteia um dos remédios disponíveis nesta fase
         Sprite receitaSorteada = receitasDestaFase[Random.Range(0, receitasDestaFase.Length)];
+        
+        // 3. Cola a imagem do remédio no balãozinho do NPC
         novoCliente.GetComponent<Npcs_Code>().ConfigurarPedido(receitaSorteada);
     }
 
+    // Função matemática que conta quantas pessoas estão ocupando cadeiras
     private int ClientesNoBalcao()
     {
         int ocupados = 0;
         foreach (Transform pos in posicoesBalcao)
         {
+            // Se tiver um "filho" (um NPC) dentro desse ponto, conta +1
             if (pos.childCount > 0) ocupados++;
         }
-        return ocupados;
+        return ocupados; // Retorna o total lotado
     }
 
+    // Função que procura a primeira cadeira livre e devolve o lugar exato
     private Transform ObterPosicaoVazia()
     {
         foreach (Transform pos in posicoesBalcao)
         {
+            // Se o ponto não tiver nenhum "filho", achamos o lugar vazio!
             if (pos.childCount == 0) return pos; 
         }
-        return null; 
+        return null; // Se bateu em todos e não achou, retorna nulo (balcão lotado)
     }
 }

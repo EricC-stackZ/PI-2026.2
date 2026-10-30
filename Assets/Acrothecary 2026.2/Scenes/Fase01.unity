@@ -1036,6 +1036,7 @@ MonoBehaviour:
   - {fileID: -5051605239352923169, guid: e46dde1728741fe48b91c0f7ac3d41c9, type: 3}
   - {fileID: 9023256761962524523, guid: 87a9cefa50429124a85cc18bc18bffe0, type: 3}
   - {fileID: -1689558349610292264, guid: 63e5fdd7de13ba6458f87b49dae5ebd4, type: 3}
+  pacienciaDaFase: 25
   Onjogo: 0
 --- !u!1 &225418551
 GameObject:
@@ -2793,6 +2794,7 @@ MonoBehaviour:
   somDesfazer: {fileID: 8300000, guid: ed383f294b6fa6a44b4f6212a7896c2d, type: 3}
   somPocaoFeita: {fileID: 8300000, guid: 9999c7bc4c2923d46939a5faf6222a55, type: 3}
   somRecarga: {fileID: 8300000, guid: 9fe405d2d993b4943809aea81679bf1a, type: 3}
+  somErroMistura: {fileID: 8300000, guid: 17ae793d9feb49c4e90ed0a2262c1c1a, type: 3}
   somAcerto: {fileID: 8300000, guid: 0d90cd0b12c616d47bd2fd852c8c14d8, type: 3}
   somErro: {fileID: 8300000, guid: bc18bb527f3b6bc47a082c11a89e612f, type: 3}
   somLivro: {fileID: 8300000, guid: e5c7262c708c4d74fb9edf7b19233b74, type: 3}
