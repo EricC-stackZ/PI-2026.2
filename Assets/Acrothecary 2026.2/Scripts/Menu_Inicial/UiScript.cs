@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UiScript : MonoBehaviour
 {
@@ -20,6 +21,11 @@ public class UiScript : MonoBehaviour
     public void FecharCreditos() // Método para fechar a tela de créditos e reativar os botões do menu...
     {
         menuInicial[2].SetActive(false); menuInicial[0].SetActive(true);
+    }
+
+    public void AvancarTela2()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void FecharJogo() // Método para fechar/sair do jogo...

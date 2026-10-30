@@ -266,7 +266,6 @@ GameObject:
   m_Component:
   - component: {fileID: 54614382}
   - component: {fileID: 54614383}
-  - component: {fileID: 54614384}
   m_Layer: 0
   m_Name: CursorManager
   m_TagString: Untagged
@@ -303,22 +302,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorController
   cursorAberto: {fileID: 2800000, guid: 55a866a6b1a1bec46ad35c6e2daa41c4, type: 3}
   cursorFechado: {fileID: 2800000, guid: d1043a14033306945a6eff30bd1d8832, type: 3}
---- !u!114 &54614384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54614381}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad027104bec079844a213190f76814ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TransitionController
-  canvasSecundario: {fileID: 1656964688}
-  transiTela:
-  - {fileID: 7350755591444979600, guid: ffc7e809fc7c82d47a1d56b6f1a95006, type: 3}
-  - {fileID: 821230355614276643, guid: 83a38508c9454de4899b751424549b00, type: 3}
 --- !u!1 &88812315
 GameObject:
   m_ObjectHideFlags: 0
@@ -3123,7 +3106,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1277897002}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1341220677}
+        m_TargetAssemblyTypeName: InteractionControl, Assembly-CSharp
+        m_MethodName: FecharTutorial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1277897002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3300,13 +3295,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1661606850443095516, guid: e3a51d83e9273964bb149de9d959be31, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1341220677}
   m_SourcePrefab: {fileID: 100100000, guid: e3a51d83e9273964bb149de9d959be31, type: 3}
 --- !u!4 &1341220675 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5969346505211151000, guid: e3a51d83e9273964bb149de9d959be31, type: 3}
   m_PrefabInstance: {fileID: 1341220674}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1341220676 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1661606850443095516, guid: e3a51d83e9273964bb149de9d959be31, type: 3}
+  m_PrefabInstance: {fileID: 1341220674}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1341220677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341220676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99a765f6c599554dab4e07e50682907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionControl
+  todasTelas:
+  - {fileID: 1939006220}
 --- !u!1 &1371330481
 GameObject:
   m_ObjectHideFlags: 0
@@ -4876,7 +4893,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1939006221
 RectTransform:
   m_ObjectHideFlags: 0
