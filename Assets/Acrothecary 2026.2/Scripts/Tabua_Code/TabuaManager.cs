@@ -4,91 +4,121 @@ using System.Collections.Generic;
 public class TabuaManager : MonoBehaviour
 {
     [Header("Configurações")]
-    public ListaDePorcao bancoDeReceitas; //Lista com as 20 porções
+    public ListaDePorcao bancoDeReceitas; // Lista com o catálogo de todas as porções do jogo
 
     [Header("A Grande Ponte (Módulo 2)")]
-    public Transform localDeSpawnDaPocao; //Pega a posição que o remedio pronto aparece
+    public Transform localDeSpawnDaPocao; // Posição exata onde a poção pronta aparece fisicamente na bancada
 
     [Header("UI Visual (As Vasilhas no Balcão)")]
-    public GameObject[] imagensVasilhas; //Imagens do pote cheio etc
+    public GameObject[] imagensVasilhas; // Lista com os ícones visuais dos potes enchendo na mesa
 
-    private Stack<IngredientType> ingredientesNaTabua = new Stack<IngredientType>(); //Pilha para receber os ingredientes clicados
+    private Stack<IngredientType> ingredientesNaTabua = new Stack<IngredientType>(); // Pilha que guarda a ordem dos ingredientes que o jogador clicou
 
-    private GameObject porcaoPronta; //Variável para armazenar a porção pronta
+    private GameObject porcaoPronta; // Variável para armazenar o objeto da poção que acabou de ser criada
 
-    
-    public bool AdicionarIngrediente(IngredientType novoIngrediente)//Metodo baseado na lista de ingredientes
+    // Função principal chamada pelos potes quando o jogador clica neles
+    public bool AdicionarIngrediente(IngredientType novoIngrediente)
     {
-        if(porcaoPronta != null) //Verifica se a porção já foi criada
+        // Se já existe uma poção pronta na mesa, bloqueia novos cliques até o jogador recolher
+        if (porcaoPronta != null) 
         {
             Debug.Log("[VISUAL ERRO] Porção já criada. Limpe a mesa antes de adicionar novos ingredientes.");
-            return false; //Não aceita mais ingredientes se a porção já foi criada
+            return false; 
         }
 
-        if (ingredientesNaTabua.Count < 3) //Verifica se a pilha tá vazia
+        // Se a mesa ainda não tem 3 ingredientes, aceita o novo item
+        if (ingredientesNaTabua.Count < 3) 
         {
-            ingredientesNaTabua.Push(novoIngrediente); //Adiciona o ingrediente clicado
+            ingredientesNaTabua.Push(novoIngrediente); // Empilha o ingrediente na memória
 
-            imagensVasilhas[ingredientesNaTabua.Count - 1].SetActive(true); //Adiciona a imagem do pote enchendo
+            // Toca o som de adicionar ingrediente na tábua
+            AudioManager.instance.TocarSFX(AudioManager.instance.somIngrediente);
+
+            // Liga a imagem visual correspondente na interface (o pote enchendo)
+            imagensVasilhas[ingredientesNaTabua.Count - 1].SetActive(true); 
             
             Debug.Log($"[VISUAL] Vasilha {ingredientesNaTabua.Count} encheu com: {novoIngrediente}");
 
-            if (ingredientesNaTabua.Count == 3) //se preencher tudo, verifica a receita
+            // Se completou os 3 ingredientes, chegou a hora da verdade: vamos verificar a receita!
+            if (ingredientesNaTabua.Count == 3) 
             {
                 VerificarReceita(); 
             }
 
-            return true; //Retorna true se o ingrediente foi aceito
+            return true; // Informa ao pote que o ingrediente foi aceito com sucesso
         }
-        return false; //Retorna false se a pilha estiver cheia e não aceitar mais ingredientes
+        
+        return false; // Retorna falso se a tábua já estiver cheia (com 3 itens)
     }
 
-    private void VerificarReceita() //Verifica se a receita bate com os ingredientes da porção
+    // Compara os ingredientes da mesa com o banco de dados de receitas
+    private void VerificarReceita() 
     {
         bool receitaEncontrada = false;
 
-        foreach (MoldeReceita receita in bancoDeReceitas.todasAsReceitas) //Vasculha todas as receitas
+        // Varre todas as receitas cadastradas no ScriptableObject
+        foreach (MoldeReceita receita in bancoDeReceitas.todasAsReceitas) 
         {
-            if (ReceitaBate(receita)) //chama o verificador para ver se retorna true ou false
+            if (ReceitaBate(receita)) // Se a função retornar true, os ingredientes batem certinho!
             {
                 Debug.Log($"[VISUAL SUCESSO] Receita Certa! Criando a poção: {receita.nomePorcao}");
                 receitaEncontrada = true;
                 
-                if(receita.prefabDestaPocao != null && localDeSpawnDaPocao != null) //Instancia a prefab para que a porção armazenada apareça
+                // Se o prefab e o local de spawn estiverem configurados, instancia a poção pronta na bancada
+                if (receita.prefabDestaPocao != null && localDeSpawnDaPocao != null) 
                 {
                     porcaoPronta = Instantiate(receita.prefabDestaPocao, localDeSpawnDaPocao.position, Quaternion.identity);
+                    
+                    // Toca o som de sucesso ao finalizar a poção
+                    AudioManager.instance.TocarSFX(AudioManager.instance.somPocaoFeita);
                 }
                 else
                 {
                     Debug.LogWarning("Atenção: O Prefab da poção ou o Local de Spawn não estão configurados no Inspector!");
                 }
                 
-                LimparMesa();
+                LimparMesa(); // Limpa os dados da tábua para a próxima mistura
                 break;
             }
         }
 
-        if (!receitaEncontrada)//caso retorne false
+        // Se correu todas as receitas e nenhuma bateu, o jogador errou a mistura
+        if (!receitaEncontrada)
         {
             Debug.Log("[VISUAL ERRO] Mistura errada. Mesa limpa.");
-            LimparMesa();
+            LimparMesa(); // Limpa a mesa de qualquer forma
+            
+            // Toca o som de erro de mistura que criamos agora há pouco
+            AudioManager.instance.TocarSFX(AudioManager.instance.somErroMistura);
         }
     }
 
-    private bool ReceitaBate(MoldeReceita receita) //Função para verificar se os ingredientes bate com os que estão configurados
+    // Função matemática que confere se os ingredientes da mesa batem com os requisitos da receita
+    private bool ReceitaBate(MoldeReceita receita) 
     {
-        List<IngredientType> copiaRequisitos = new List<IngredientType>(receita.requisitosDeIngredientes); //Lista que recebe a copia de ingredientes selecionados
+        // Cria uma cópia da lista de requisitos para manipular sem estragar a original
+        List<IngredientType> copiaRequisitos = new List<IngredientType>(receita.requisitosDeIngredientes); 
+        
         foreach (IngredientType ing in ingredientesNaTabua)
         {
-            if (copiaRequisitos.Contains(ing)) copiaRequisitos.Remove(ing); //Verifica se tem algum requisito que se enquadra
-            else return false; //Se não bater, retorna false
+            // Se o ingrediente da mesa existe nos requisitos, remove da cópia
+            if (copiaRequisitos.Contains(ing)) 
+            {
+                copiaRequisitos.Remove(ing); 
+            }
+            else 
+            {
+                return false; // Se achar algo intruso, a receita é falsa
+            }
         }
-        return copiaRequisitos.Count == 0; //Se bater, retorna true e limpa a lista de copia para uma nova verificação
+        
+        return copiaRequisitos.Count == 0; // Se a lista ficou zerada, significa que todos os 3 batem perfeitamente!
     }
 
-    public void RemoverUltimoIngrediente()//Botão de remover ingrediente
+    // Função do botão da lixeira para remover o último ingrediente adicionado
+    public void RemoverUltimoIngrediente()
     {
-        if(porcaoPronta != null) //Verifica se a porção já foi criada
+        if(porcaoPronta != null) 
         {
             Debug.Log("[VISUAL ERRO] Porção já criada. Limpe a mesa antes de adicionar novos ingredientes.");
             return;
@@ -96,18 +126,26 @@ public class TabuaManager : MonoBehaviour
 
         if (ingredientesNaTabua.Count > 0)
         {
-            imagensVasilhas[ingredientesNaTabua.Count - 1].SetActive(false); //Troca imagem de pode enchendo pra esvaziando
-            IngredientType removido = ingredientesNaTabua.Pop(); //Remove da pilha
+            // Desliga o ícone visual do último pote que tinha acendido
+            imagensVasilhas[ingredientesNaTabua.Count - 1].SetActive(false); 
+            
+            // Remove o ingrediente do topo da pilha
+            IngredientType removido = ingredientesNaTabua.Pop(); 
+            
+            // Toca o som de desfazer/lixeira
+            AudioManager.instance.TocarSFX(AudioManager.instance.somDesfazer);
+            
             Debug.Log($"[VISUAL] Lixeira: {removido} removido.");
         }
     }
 
-    private void LimparMesa() //função de tirar todas as imagens e ingredientes
+    // Função interna para apagar os visuais e esvaziar a pilha da memória
+    private void LimparMesa() 
     {
         foreach (GameObject vasilha in imagensVasilhas)
         {
-            vasilha.SetActive(false);
+            if (vasilha != null) vasilha.SetActive(false);
         }
-        ingredientesNaTabua.Clear(); 
+        ingredientesNaTabua.Clear();
     }
 }

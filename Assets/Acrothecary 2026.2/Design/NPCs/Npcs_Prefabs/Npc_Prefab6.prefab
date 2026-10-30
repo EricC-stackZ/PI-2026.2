@@ -323,7 +323,11 @@ MonoBehaviour:
   imagemNPC: {fileID: 3323484303728892225}
   barraPaciencia: {fileID: 3459334665607055917}
   iconeReceita: {fileID: 159321936568639976}
-  tempoMaximoEspera: 25
+  tempoMaximoEspera: 20
+  tempoParaAlerta: 5
+  corNormal: {r: 1, g: 1, b: 1, a: 1}
+  corAlerta: {r: 0, g: 0, b: 0, a: 1}
+  velocidadePiscar: 5
 --- !u!61 &-7443288566542883202
 BoxCollider2D:
   m_ObjectHideFlags: 0
