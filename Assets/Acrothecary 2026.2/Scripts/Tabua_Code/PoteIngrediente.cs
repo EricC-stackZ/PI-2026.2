@@ -63,6 +63,8 @@ public class PoteIngrediente : MonoBehaviour
     private IEnumerator RotinaDeRecarga()
     {
         emRecarga = true; 
+
+        AudioManager.instance.TocarSFX(AudioManager.instance.somRecarga);
         
         if(botaoUsar != null) botaoUsar.interactable = false; 
         if(botaoRecarregar != null) botaoRecarregar.interactable = false;

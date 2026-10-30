@@ -29,6 +29,8 @@ public class TabuaManager : MonoBehaviour
         {
             ingredientesNaTabua.Push(novoIngrediente); //Adiciona o ingrediente clicado
 
+            AudioManager.instance.TocarSFX(AudioManager.instance.somIngrediente);
+
             imagensVasilhas[ingredientesNaTabua.Count - 1].SetActive(true); //Adiciona a imagem do pote enchendo
             
             Debug.Log($"[VISUAL] Vasilha {ingredientesNaTabua.Count} encheu com: {novoIngrediente}");
@@ -57,6 +59,7 @@ public class TabuaManager : MonoBehaviour
                 if(receita.prefabDestaPocao != null && localDeSpawnDaPocao != null) //Instancia a prefab para que a porção armazenada apareça
                 {
                     porcaoPronta = Instantiate(receita.prefabDestaPocao, localDeSpawnDaPocao.position, Quaternion.identity);
+                    AudioManager.instance.TocarSFX(AudioManager.instance.somPocaoFeita);
                 }
                 else
                 {
@@ -98,6 +101,7 @@ public class TabuaManager : MonoBehaviour
         {
             imagensVasilhas[ingredientesNaTabua.Count - 1].SetActive(false); //Troca imagem de pode enchendo pra esvaziando
             IngredientType removido = ingredientesNaTabua.Pop(); //Remove da pilha
+            AudioManager.instance.TocarSFX(AudioManager.instance.somDesfazer);
             Debug.Log($"[VISUAL] Lixeira: {removido} removido.");
         }
     }

@@ -38,6 +38,7 @@ public class ClienteSpawner : MonoBehaviour
        if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             Onjogo = true; Debug.Log("Jogo Ativado");
+            AudioManager.instance.IniciarMusicaFundo(); //Inicia a música de fundo (Eric usa essa função no AudioManager.cs)
         }
     }
 

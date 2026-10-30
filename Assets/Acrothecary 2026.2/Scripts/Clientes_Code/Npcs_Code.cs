@@ -93,6 +93,8 @@ public class Npcs_Code : MonoBehaviour
         // O jogador acertou a poção! Chame a função de aumentar os "Clientes Atendidos" aqui!
         //Serve também para você verificar a vitoria, etc
 
+        AudioManager.instance.TocarSFX(AudioManager.instance.somAcerto);
+
         Destroy(gameObject, 2f); 
     }
 
@@ -104,6 +106,8 @@ public class Npcs_Code : MonoBehaviour
         // --- PARA ERIC ---
         // O jogador entregou a poção errada. Chame a função de perder vida aqui!
         //Serve também para você verificar a derrota, etc
+
+        AudioManager.instance.TocarSFX(AudioManager.instance.somErro);
 
         Destroy(gameObject, 2f);
     }
