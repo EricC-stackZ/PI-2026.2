@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1661606850443095516
+--- !u!1 &3032885467402437781
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5969346505211151000}
-  - component: {fileID: 4552305940298139384}
+  - component: {fileID: 9129014892828207818}
+  - component: {fileID: 8144648741440748409}
   m_Layer: 0
-  m_Name: TransitionManager
+  m_Name: TransiController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5969346505211151000
+--- !u!4 &9129014892828207818
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1661606850443095516}
+  m_GameObject: {fileID: 3032885467402437781}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,13 +32,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4552305940298139384
+--- !u!114 &8144648741440748409
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1661606850443095516}
+  m_GameObject: {fileID: 3032885467402437781}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad027104bec079844a213190f76814ff, type: 3}
@@ -48,3 +48,9 @@ MonoBehaviour:
   transiTela:
   - {fileID: 7350755591444979600, guid: ffc7e809fc7c82d47a1d56b6f1a95006, type: 3}
   - {fileID: 821230355614276643, guid: 83a38508c9454de4899b751424549b00, type: 3}
+  referenciaImage: {fileID: 0}
+  imagemNova:
+  - {fileID: 21300000, guid: d59331644a61254458e0a02f1ee72283, type: 3}
+  - {fileID: 21300000, guid: ede0b46e73e04ce4b8814726bcb49663, type: 3}
+  textCliente: {fileID: 0}
+  clienteSpawner: {fileID: 0}

@@ -328,6 +328,9 @@ MonoBehaviour:
   corNormal: {r: 1, g: 1, b: 1, a: 1}
   corAlerta: {r: 0, g: 0, b: 0, a: 1}
   velocidadePiscar: 5
+  vida:
+  - {fileID: 1426787750668168182, guid: 3cf1c42cf970e6943b80cafe352af218, type: 3}
+  - {fileID: 3675590199417945758, guid: 558bdb8ee358d3d42a1cd1ed84428905, type: 3}
 --- !u!61 &442399149661699155
 BoxCollider2D:
   m_ObjectHideFlags: 0

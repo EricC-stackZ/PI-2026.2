@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.Video;
 
 public class Npcs_Code : MonoBehaviour
 {
@@ -97,6 +98,7 @@ public class Npcs_Code : MonoBehaviour
             
             // --- PARA ERIC ---
             // O jogador ignorou o cliente e o tempo esgotou. Faça a verificação de perder vida aqui!
+            TransitionController.instance.PerderVida();
             
             Destroy(gameObject, 2f); // O NPC vai embora (destrói) depois de 2 segundos
         }
@@ -111,6 +113,8 @@ public class Npcs_Code : MonoBehaviour
         // --- PARA ERIC ---
         // Acerto! Chame a função de somar a pontuação ou atualizar a meta de clientes da fase aqui.
 
+        TransitionController.instance.GanharClientes();
+
         AudioManager.instance.TocarSFX(AudioManager.instance.somAcerto); // Toca aquele sonzinho de sucesso
 
         Destroy(gameObject, 2f); // O NPC vai embora feliz depois de 2 segundos
@@ -124,6 +128,7 @@ public class Npcs_Code : MonoBehaviour
         
         // --- PARA ERIC ---
         // Erro fatal! O jogador entregou a poção errada. Faça a verificação de perder vida aqui!
+        TransitionController.instance.PerderVida();
 
         AudioManager.instance.TocarSFX(AudioManager.instance.somErro); // Toca o som de fracasso
 

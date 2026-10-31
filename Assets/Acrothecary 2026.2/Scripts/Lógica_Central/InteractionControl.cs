@@ -14,6 +14,27 @@ public class InteractionControl : MonoBehaviour
     public GameObject[] tutorial;
 
     public TextMeshProUGUI[] textos; private int contagem;
+    public ClienteSpawner clienteSpawner;
+
+    public void PassarTutorial()
+    {
+        if(contagem < tutorial.Length)
+        {
+            tutorial[contagem].SetActive(false);
+        }
+
+        else
+        {
+            todasTelas.SetActive(false); clienteSpawner.AtivarJogo();
+        }
+
+        contagem++;
+    }
+
+    public void PularTelaTutorial()
+    {
+        todasTelas.SetActive(false); clienteSpawner.AtivarJogo();
+    }
 
     public void TelaDialogo1()
     {
@@ -139,6 +160,11 @@ public class InteractionControl : MonoBehaviour
 
                 break;
         }
+    }
+
+    public void PularTelaDialogo1()
+    {
+        todasTelas.SetActive(false); telaDoVideo.SetActive(true);
     }
 
     public void TelaDialogo2()
@@ -279,19 +305,9 @@ public class InteractionControl : MonoBehaviour
         }
     }
 
-    public void PassarTutorial()
+    public void PularTelaDialogo2()
     {
-        if(contagem < tutorial.Length)
-        {
-            tutorial[contagem].SetActive(false);
-        }
-
-        else
-        {
-            todasTelas.SetActive(false);
-        }
-
-        contagem++;
+        todasTelas.SetActive(false);
     }
 
     public void FecharTela5()

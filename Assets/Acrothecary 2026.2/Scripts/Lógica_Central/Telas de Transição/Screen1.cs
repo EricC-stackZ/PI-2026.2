@@ -8,6 +8,8 @@ public class Screen1 : MonoBehaviour
     [SerializeField] 
     private GameObject telaTransicao;
 
+    public ClienteSpawner clienteSpawner;
+
     private void Start()
     {
         if(videoPlayer != null)
@@ -20,7 +22,7 @@ public class Screen1 : MonoBehaviour
     {
         if(telaTransicao != null)
         {
-            telaTransicao.SetActive(false);
+            telaTransicao.SetActive(false); clienteSpawner.AtivarJogo();
         }
     }
 }

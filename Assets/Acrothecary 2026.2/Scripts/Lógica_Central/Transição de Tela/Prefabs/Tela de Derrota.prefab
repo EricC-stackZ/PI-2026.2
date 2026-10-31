@@ -196,7 +196,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4552305940298139384, guid: e3a51d83e9273964bb149de9d959be31, type: 3}
+      - m_Target: {fileID: 8144648741440748409, guid: 90f71ed61f4e22f40a3695778dc05655, type: 3}
         m_TargetAssemblyTypeName: TransitionController, Assembly-CSharp
         m_MethodName: ReiniciarCena
         m_Mode: 1

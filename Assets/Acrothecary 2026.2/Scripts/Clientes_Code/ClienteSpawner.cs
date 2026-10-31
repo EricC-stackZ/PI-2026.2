@@ -20,7 +20,8 @@ public class ClienteSpawner : MonoBehaviour
     public float pacienciaDaFase = 20f; // Tempo (em segundos) que a barra do NPC vai durar nesta fase
 
     [Header("Controle do Jogo")]
-    public bool Onjogo = false; // Trava o nascimento de clientes até o tutorial fechar (espaço)
+    public bool Onjogo = false;
+    public bool OnWhil = true;
 
     void Start()
     {
@@ -33,15 +34,13 @@ public class ClienteSpawner : MonoBehaviour
         // --- PARA ERIC ---
         // Faça a verificação contínua aqui: cheque se o jogador atingiu a meta de clientes atendidos (Vitória) 
         // ou se ele perdeu as 3 vidas (Derrota), e chame as telas correspondentes.
+    }
 
-        // --- GATILHO TEMPORÁRIO PARA TESTES ---
-        // Aperta ESPAÇO para destravar o jogo e ligar a música
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            Onjogo = true; 
-            Debug.Log("Jogo Ativado");
-            AudioManager.instance.IniciarMusicaFundo(); // Chama a música de fundo lá do AudioManager
-        }
+    public void AtivarJogo()
+    {
+        Onjogo = true;
+        Debug.Log("Jogo Ativado");
+        AudioManager.instance.IniciarMusicaFundo(); // Chama a música de fundo lá do AudioManager
     }
 
     private IEnumerator RotinaDeSpawn()
@@ -51,7 +50,7 @@ public class ClienteSpawner : MonoBehaviour
 
         // Loop infinito: vai rodar pra sempre até a cena ser reiniciada
         // --- PARA ERIC: Quando a sua condição de vitória ou derrota for atingida, lembre de interromper a geração de clientes aqui ---
-        while (true) 
+        while (OnWhil) 
         {
             // Espera o tempo definido (ex: 3, 4 ou 5 segundos) antes de tentar chamar o próximo
             yield return new WaitForSeconds(tempoEntreClientes);
