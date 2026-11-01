@@ -3,27 +3,32 @@ using UnityEngine;
 
 public class InteractionControl : MonoBehaviour
 {
+    #region Variáveis
+
     [SerializeField]
-    private GameObject todasTelas;
+    private GameObject todasTelas; // Variável para desativar ou ativar objetos em várias cenas.
     
     [SerializeField]
-    private GameObject telaDoVideo;
+    private GameObject telaDoVideo; // Variável para ativar a tela de transição.
 
-    public GameObject npc1, npc2;
-    public GameObject tela5;
-    public GameObject[] tutorial;
+    public GameObject npc1, npc2; // Variável para trocar as imagens dos NPCs.
+    public GameObject tela5; // Ativa a tela 5.
+    public GameObject[] tutorial; // Guarda todos os objetos onde estão as imagens do tutorial.
 
-    public TextMeshProUGUI[] textos; private int contagem;
+    // Vetor (Text); índice 0 = guarda o texto 1 (Remy) || Índice 1 = guarda o texto2 (NPC) 
+    public TextMeshProUGUI[] textos; private int contagem;  // Variável (contagem) usada na maioria dos métodos para realizar ações em cada cena/fase.
     public ClienteSpawner clienteSpawner;
 
-    public void PassarTutorial()
+    #endregion
+
+    public void PassarTutorial() // Método para desativar as imagens/objetos do tutorial. Usando a variável (contagem) como base para o índice do vetor e desativando as imagens uma por uma a cada clique.
     {
         if(contagem < tutorial.Length)
         {
             tutorial[contagem].SetActive(false);
         }
 
-        else
+        else // Quando a variável (contagem) for igual ou maior ao tamanho do vetor (tutorial) significa que estamos na tela final de tutorial, e o próximo clique vao desativar tudo do tutorial e iniciar o game.
         {
             todasTelas.SetActive(false); clienteSpawner.AtivarJogo();
         }
@@ -31,12 +36,14 @@ public class InteractionControl : MonoBehaviour
         contagem++;
     }
 
-    public void PularTelaTutorial()
+    public void PularTelaTutorial() // Método para desativar o tutorial por completo e iniciar logo o game.
     {
         todasTelas.SetActive(false); clienteSpawner.AtivarJogo();
     }
 
-    public void TelaDialogo1()
+    # region Tela de Diálogo 1
+
+    public void TelaDialogo1() // Contagem inicia em 0, e vai somando a cada chamada do método no clique do botão na tela de diálogo, e entrando no case correspondente para mudar os textos do vetor.
     {
         contagem++;
 
@@ -154,7 +161,7 @@ public class InteractionControl : MonoBehaviour
 
                 break;
 
-            case 16:
+            case 16: // Case final que desativa toda a tela de diálogo e ativa a tela de transição.
 
                 todasTelas.SetActive(false); telaDoVideo.SetActive(true);
 
@@ -162,12 +169,16 @@ public class InteractionControl : MonoBehaviour
         }
     }
 
-    public void PularTelaDialogo1()
+    #endregion
+
+    public void PularTelaDialogo1() // Método para desativar a tela de diálogo 1 por completo e iniciar a tela de transição.
     {
         todasTelas.SetActive(false); telaDoVideo.SetActive(true);
     }
 
-    public void TelaDialogo2()
+    # region Tela de Diálogo 2
+
+    public void TelaDialogo2() // Contagem inicia em 0, e vai somando a cada chamada do método no clique do botão na tela de diálogo, e entrando no case correspondente para mudar os textos do vetor.
     {
         contagem++;
 
@@ -305,12 +316,14 @@ public class InteractionControl : MonoBehaviour
         }
     }
 
-    public void PularTelaDialogo2()
+    #endregion
+
+    public void PularTelaDialogo2() // Método para desativar a tela de diálogo 2 por completo.
     {
         todasTelas.SetActive(false);
     }
 
-    public void FecharTela5()
+    public void FecharTela5() // Método para fechar a tela 5 (Remy na Estrada) e ativar a tela de transição.
     {
         tela5.SetActive(false); telaDoVideo.SetActive(true);
     }

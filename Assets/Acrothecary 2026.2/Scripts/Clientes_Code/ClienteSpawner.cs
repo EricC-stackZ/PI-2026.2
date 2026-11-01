@@ -36,10 +36,12 @@ public class ClienteSpawner : MonoBehaviour
         // ou se ele perdeu as 3 vidas (Derrota), e chame as telas correspondentes.
     }
 
-    public void AtivarJogo()
+    public void AtivarJogo() // Método chamado ao finalizar as cutscenes/telas para iniciar o jogo.
     {
-        Onjogo = true;
-        Debug.Log("Jogo Ativado");
+        Onjogo = true; // Ativa o spawn dos NPCs.
+
+        Debug.Log("Jogo Ativado"); // Testador de jogo ativo.
+
         AudioManager.instance.IniciarMusicaFundo(); // Chama a música de fundo lá do AudioManager
     }
 

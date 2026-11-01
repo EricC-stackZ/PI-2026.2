@@ -1216,6 +1216,7 @@ MonoBehaviour:
   - {fileID: -1689558349610292264, guid: 63e5fdd7de13ba6458f87b49dae5ebd4, type: 3}
   pacienciaDaFase: 25
   Onjogo: 0
+  OnWhil: 1
 --- !u!1 &225418551
 GameObject:
   m_ObjectHideFlags: 0

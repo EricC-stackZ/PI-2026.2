@@ -1710,6 +1710,7 @@ MonoBehaviour:
   - {fileID: -8551008758079006815, guid: 822db83f290bfb942884d3f63e649873, type: 3}
   pacienciaDaFase: 10
   Onjogo: 0
+  OnWhil: 1
 --- !u!1 &225418551
 GameObject:
   m_ObjectHideFlags: 0
@@ -6285,7 +6286,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a5cfd312ceb45174681cde6370673afc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

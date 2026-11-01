@@ -6,21 +6,25 @@ using UnityEngine.UI;
 
 public class TransitionController : MonoBehaviour
 {
+    #region Variáveis
+
     [SerializeField]
     private Transform canvasSecundario; 
 
     [SerializeField]
     private GameObject[] transiTela; // Índice 1 = Tela de Vitória || Índice 2 = Tela de Derrota;
     
-    public Image referenciaImage;
-    public Sprite[] imagemNova;
+    public Image referenciaImage; // Referência da imagem que vai ser alterada no método PerderVida().
+    public Sprite[] imagemNova; // Guarda as imagens (vida 2 e vida 1).
     private int vidasAtuais = 3;
     private int clientesAtendidos;
 
     public TextMeshProUGUI textCliente;
 
     public ClienteSpawner clienteSpawner;
-    public static TransitionController instance;
+    public static TransitionController instance; // Instance do script para chamada dos métodos em qualquer outro script.
+
+    #endregion
     
     public static class GameData // Classe estática que guarda o valor do int, sem recriar a variável para não perder o seu valor sempre que mudar de cena.
     {
@@ -31,11 +35,11 @@ public class TransitionController : MonoBehaviour
 
     private void Awake()
     {
-        // Ao iniciar o jogo, ele define que a "instance" global é este exato script
-        if (instance == null)
+        if (instance == null) // Ao iniciar o jogo, ele define que a "instance" global é este exato script
         {
             instance = this;
         }
+
         else
         {
             Destroy(gameObject);
@@ -57,34 +61,36 @@ public class TransitionController : MonoBehaviour
         }
     }
 
-    public void GanharClientes()
+    #region Lógica de Vitória/Derrota
+
+    public void GanharClientes() // Método chamado no script Npcs_Code para contagem e avaliação de clientes atendidos de acordo com a fase atual.
     {
         clientesAtendidos++;
         int clientesNecessarios = 0;
 
-        // Define qual é a meta dependendo da fase
+        // Define qual é a meta dependendo da fase.
         if (GameData.faseAtual == 1) clientesNecessarios = 4;
         else if (GameData.faseAtual == 2) clientesNecessarios = 6;
         else if (GameData.faseAtual == 3) clientesNecessarios = 10;
         else if (GameData.faseAtual == 4) clientesNecessarios = 13;
 
-        textCliente.text = "Clientes Atendidos : " + clientesAtendidos + "/" + clientesNecessarios; // Atualiza o texto na tela uma única vez
+        textCliente.text = "Clientes Atendidos : " + clientesAtendidos + "/" + clientesNecessarios; // Atualiza o texto na tela uma única vez.
 
-        if (clientesAtendidos >= clientesNecessarios) // Verifica se o jogador atingiu a meta da fase
+        if (clientesAtendidos >= clientesNecessarios) // Verifica se o jogador atingiu a meta da fase.
         {
-            vidasAtuais = 6;
+            vidasAtuais = 10; // Linha de prevenção para a tela de derrota não sobrepujar a tela de vitória.
 
-            TelaVitoria(); clienteSpawner.OnWhil = false;
+            TelaVitoria(); clienteSpawner.OnWhil = false; // Ao ganhar chama o método de vitória e desativa o spawn de clientes.
         
             if (GameData.faseAtual < 4) // Só avança de fase se não estiver na última (Fase 4)
             {
                 GameData.faseAtual++;
-                clientesAtendidos = 0; // Zera para a próxima fase
+                clientesAtendidos = 0; // Zera a quantidade de clientes atendidos para a próxima fase.
             }
         }
     }
 
-    public void PerderVida()
+    public void PerderVida() // Método chamado quando exceder o tempo de espera do clente ou arrasto de remédio errado para o cliente no script Npcs_Code; assim, alterando a imagem da vida.
     {
         vidasAtuais--;
 
@@ -98,7 +104,7 @@ public class TransitionController : MonoBehaviour
                     referenciaImage.sprite = imagemNova[1];
                 break;
             
-            case 0:
+            case 0: // Quando a vida chegar a 0 chama a tela de derrota, e desativa o spawn de clientes (otimização para não ter clientes infinitamente na cena).
                     TelaDerrota(); clienteSpawner.OnWhil = false;
                 break;
         }
@@ -117,6 +123,8 @@ public class TransitionController : MonoBehaviour
         
         novoElemento.transform.localPosition = Vector3.zero;
     }
+
+    #endregion
 
     public void AvancarCena() // Método chamado ao clicar no botão da (Avançar) da Tela de Vitória, somando a variável estática, e entrando na verificação do case para mudar de cena.
     {
