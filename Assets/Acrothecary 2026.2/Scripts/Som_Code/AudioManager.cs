@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    #region Variáveis
+
     public static AudioManager instance; // Instância global (Singleton). Permite que qualquer script do jogo chame o áudio sem precisar procurar este objeto.
 
     [Header("Fontes de Áudio (Caixas de Som)")]
@@ -24,6 +26,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("Sons de Ação (Livro)")]
     public AudioClip somLivro;  // Som de virar a página ou abrir/fechar o livro do Avô
+
+    #endregion
 
     private void Awake() // Roda antes mesmo do jogo começar oficialmente
     {
@@ -58,7 +62,6 @@ public class AudioManager : MonoBehaviour
     }
 
     // A função principal que todos os outros scripts usam para tocar barulhos rápidos
-    // --- PARA ERIC: Nos seus scripts de Vidas e Score, basta chamar "AudioManager.instance.TocarSFX(AudioManager.instance.seuSomAqui);" ---
     public void TocarSFX(AudioClip clipSonoro)
     {
         // Só tenta tocar se o som existir e a caixa de som estiver configurada

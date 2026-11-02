@@ -5,6 +5,8 @@ using UnityEngine.Video;
 
 public class Npcs_Code : MonoBehaviour
 {
+    # region Variáveis
+
     [Header("Expressões do Rosto")]
     public Sprite spriteDoente; // Carinha normal de quem acabou de chegar na farmácia
     public Sprite spriteFeliz;  // Carinha curada de quando ganha a poção certa
@@ -26,6 +28,8 @@ public class Npcs_Code : MonoBehaviour
 
     private bool foiAtendido = false; // Trava de segurança para saber se ele já pegou o remédio ou não
     private Sprite receitaEscolhida; // Guarda a imagem do remédio sorteado pra ele
+
+    #endregion
 
     void Start()
     {
@@ -96,9 +100,7 @@ public class Npcs_Code : MonoBehaviour
         {
             MudarExpressao(spriteRaiva); // Fica pistola
             
-            // --- PARA ERIC ---
-            // O jogador ignorou o cliente e o tempo esgotou. Faça a verificação de perder vida aqui!
-            TransitionController.instance.PerderVida();
+            TransitionController.instance.PerderVida(); // Chama o método de perder vida no script TransitionController
             
             Destroy(gameObject, 2f); // O NPC vai embora (destrói) depois de 2 segundos
         }
@@ -109,11 +111,8 @@ public class Npcs_Code : MonoBehaviour
     {
         foiAtendido = true; // Trava o cronômetro pra barra parar de descer
         MudarExpressao(spriteFeliz); // O cliente fica curado e sorridente
-        
-        // --- PARA ERIC ---
-        // Acerto! Chame a função de somar a pontuação ou atualizar a meta de clientes da fase aqui.
 
-        TransitionController.instance.GanharClientes();
+        TransitionController.instance.GanharClientes(); // Chama o método de aumento de clientes atendidos no script TransitionController
 
         AudioManager.instance.TocarSFX(AudioManager.instance.somAcerto); // Toca aquele sonzinho de sucesso
 
@@ -126,9 +125,7 @@ public class Npcs_Code : MonoBehaviour
         foiAtendido = true; // Trava o cronômetro pra barra parar de descer
         MudarExpressao(spriteRaiva); // Fica revoltado por ter tomado veneno
         
-        // --- PARA ERIC ---
-        // Erro fatal! O jogador entregou a poção errada. Faça a verificação de perder vida aqui!
-        TransitionController.instance.PerderVida();
+        TransitionController.instance.PerderVida(); // Chama o método de perder vida no script TransitionController
 
         AudioManager.instance.TocarSFX(AudioManager.instance.somErro); // Toca o som de fracasso
 

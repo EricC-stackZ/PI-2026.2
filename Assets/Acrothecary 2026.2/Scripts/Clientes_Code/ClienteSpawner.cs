@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class ClienteSpawner : MonoBehaviour
 {
+    #region Variáveis
+
     [Header("Configuração de Spawn")]
     public GameObject[] npcsPrefabs; // Lista com os "corpos" dos clientes pra sortear
     public Transform[] posicoesBalcao; // Cadeiras vazias onde o cliente vai sentar/aparecer
@@ -23,17 +25,12 @@ public class ClienteSpawner : MonoBehaviour
     public bool Onjogo = false;
     public bool OnWhil = true;
 
+    #endregion
+
     void Start()
     {
         // Dá a largada no cronômetro invisível que fica verificando se pode chamar o próximo
         StartCoroutine(RotinaDeSpawn());
-    }
-
-    void Update()
-    {
-        // --- PARA ERIC ---
-        // Faça a verificação contínua aqui: cheque se o jogador atingiu a meta de clientes atendidos (Vitória) 
-        // ou se ele perdeu as 3 vidas (Derrota), e chame as telas correspondentes.
     }
 
     public void AtivarJogo() // Método chamado ao finalizar as cutscenes/telas para iniciar o jogo.
@@ -51,7 +48,6 @@ public class ClienteSpawner : MonoBehaviour
         yield return new WaitUntil(() => Onjogo == true); 
 
         // Loop infinito: vai rodar pra sempre até a cena ser reiniciada
-        // --- PARA ERIC: Quando a sua condição de vitória ou derrota for atingida, lembre de interromper a geração de clientes aqui ---
         while (OnWhil) 
         {
             // Espera o tempo definido (ex: 3, 4 ou 5 segundos) antes de tentar chamar o próximo

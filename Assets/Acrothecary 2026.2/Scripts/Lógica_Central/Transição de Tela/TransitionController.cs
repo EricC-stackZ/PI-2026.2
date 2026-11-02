@@ -12,7 +12,7 @@ public class TransitionController : MonoBehaviour
     private Transform canvasSecundario; 
 
     [SerializeField]
-    private GameObject[] transiTela; // Índice 1 = Tela de Vitória || Índice 2 = Tela de Derrota;
+    private GameObject[] transiTela; // Índice 1 = Tela de Vitória || Índice 2 = Tela de Derrota
     
     public Image referenciaImage; // Referência da imagem que vai ser alterada no método PerderVida().
     public Sprite[] imagemNova; // Guarda as imagens (vida 2 e vida 1).
@@ -58,6 +58,11 @@ public class TransitionController : MonoBehaviour
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             PerderVida();
+        }
+
+        if (Keyboard.current.fKey.wasPressedThisFrame)
+        {
+            GameData.avancarCena = 4; GameData.faseAtual = 4;
         }
     }
 
@@ -142,6 +147,10 @@ public class TransitionController : MonoBehaviour
 
             case 4:
                 SceneManager.LoadScene(4);
+            break;
+
+            case 5:
+                SceneManager.LoadScene(5);
             break;
         }
     }

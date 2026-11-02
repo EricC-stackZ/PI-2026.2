@@ -479,6 +479,14 @@ PrefabInstance:
       value: TransiController
       objectReference: {fileID: 0}
     - target: {fileID: 8144648741440748409, guid: 90f71ed61f4e22f40a3695778dc05655, type: 3}
+      propertyPath: telaFinal
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144648741440748409, guid: 90f71ed61f4e22f40a3695778dc05655, type: 3}
+      propertyPath: telafinal
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144648741440748409, guid: 90f71ed61f4e22f40a3695778dc05655, type: 3}
       propertyPath: textCliente
       value: 
       objectReference: {fileID: 1088172118}
@@ -494,6 +502,18 @@ PrefabInstance:
       propertyPath: canvasSecundario
       value: 
       objectReference: {fileID: 1656964688}
+    - target: {fileID: 8144648741440748409, guid: 90f71ed61f4e22f40a3695778dc05655, type: 3}
+      propertyPath: chamadaTelaFinal
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144648741440748409, guid: 90f71ed61f4e22f40a3695778dc05655, type: 3}
+      propertyPath: transiTela.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144648741440748409, guid: 90f71ed61f4e22f40a3695778dc05655, type: 3}
+      propertyPath: 'transiTela.Array.data[2]'
+      value: 
+      objectReference: {fileID: 334932886296739088, guid: 5157cf702c7aa254ea7e9e84c553f565, type: 3}
     - target: {fileID: 9129014892828207818, guid: 90f71ed61f4e22f40a3695778dc05655, type: 3}
       propertyPath: m_LocalPosition.x
       value: 881.17053
@@ -829,6 +849,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1150807820}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: TocarSFX
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2779c6c007a0a6f4e922a7e6e9d8a75a, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1349,6 +1381,18 @@ MonoBehaviour:
       - m_Target: {fileID: 680956113}
         m_TargetAssemblyTypeName: BookController, Assembly-CSharp
         m_MethodName: AbrirLivro
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1150807820}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: TocarSomLivro
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6433,6 +6477,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1150807820}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: TocarSFX
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2779c6c007a0a6f4e922a7e6e9d8a75a, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1195119760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8681,6 +8737,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1150807820}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: TocarSFX
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2779c6c007a0a6f4e922a7e6e9d8a75a, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

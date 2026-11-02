@@ -12,7 +12,7 @@ public class InteractionControl : MonoBehaviour
     private GameObject telaDoVideo; // Variável para ativar a tela de transição.
 
     public GameObject npc1, npc2; // Variável para trocar as imagens dos NPCs.
-    public GameObject tela5; // Ativa a tela 5.
+    public GameObject tela5; // Variável para manipular a tela 5.
     public GameObject[] tutorial; // Guarda todos os objetos onde estão as imagens do tutorial.
 
     // Vetor (Text); índice 0 = guarda o texto 1 (Remy) || Índice 1 = guarda o texto2 (NPC) 
