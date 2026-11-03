@@ -152,3 +152,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508f30a98f2381249b72d2234a9ee6fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableObject
+  spriteDestaPocao: {fileID: -6833007520711585858, guid: 3028f477af8eb2c4dbf70faf390823f4, type: 3}

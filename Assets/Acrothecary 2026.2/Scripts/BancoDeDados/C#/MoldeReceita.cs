@@ -1,5 +1,5 @@
 using UnityEngine;
-
+//Configuração das porções feitas
 [CreateAssetMenu(fileName = "NovaReceita", menuName = "Sistema de Pocoes/Receita")] //Criação de objeto para as 20 porções armazenadas
 public class MoldeReceita : ScriptableObject
 {
