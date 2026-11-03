@@ -46,11 +46,11 @@ public class TransitionController : MonoBehaviour
         }
     }
 
-    private void Update() // Código de Teste
+    private void Update() // Código de Teste (Auxiliar)
     {
         if(Keyboard.current == null) return;
 
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current.qKey.wasPressedThisFrame)
         {
             GanharClientes();
         }
@@ -58,11 +58,6 @@ public class TransitionController : MonoBehaviour
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             PerderVida();
-        }
-
-        if (Keyboard.current.fKey.wasPressedThisFrame)
-        {
-            GameData.avancarCena = 4; GameData.faseAtual = 4;
         }
     }
 
