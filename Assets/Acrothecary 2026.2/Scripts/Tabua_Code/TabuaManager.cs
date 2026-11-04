@@ -115,15 +115,23 @@ public class TabuaManager : MonoBehaviour
         return copiaRequisitos.Count == 0; // Se a lista ficou zerada, significa que todos os 3 batem perfeitamente!
     }
 
-    // Função do botão da lixeira para remover o último ingrediente adicionado
+    // Função do botão da lixeira inteligente (Desfaz ingrediente ou joga a poção inteira fora)
     public void RemoverUltimoIngrediente()
     {
+        // 1. O JOGADOR QUER JOGAR A POÇÃO PRONTA FORA
         if(porcaoPronta != null) 
         {
-            Debug.Log("[VISUAL ERRO] Porção já criada. Limpe a mesa antes de adicionar novos ingredientes.");
-            return;
+            Destroy(porcaoPronta); // Apaga o objeto da poção fisicamente da tela
+            porcaoPronta = null;   // Esvazia a variável para a mesa aceitar novos ingredientes
+            
+            // Toca o som de desfazer/lixeira
+            AudioManager.instance.TocarSFX(AudioManager.instance.somErroMistura);
+            
+            Debug.Log("[VISUAL] Poção indesejada jogada no lixo! A mesa está livre.");
+            return; // Encerra a função aqui para não tentar mexer na pilha de ingredientes
         }
 
+        // 2. O JOGADOR QUER TIRAR SÓ O ÚLTIMO INGREDIENTE (Como já funcionava antes)
         if (ingredientesNaTabua.Count > 0)
         {
             // Desliga o ícone visual do último pote que tinha acendido
