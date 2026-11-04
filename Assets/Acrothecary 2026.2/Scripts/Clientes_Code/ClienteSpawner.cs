@@ -37,8 +37,6 @@ public class ClienteSpawner : MonoBehaviour
     {
         Onjogo = true; // Ativa o spawn dos NPCs.
 
-        Debug.Log("Jogo Ativado"); // Testador de jogo ativo.
-
         AudioManager.instance.IniciarMusicaFundo(); // Chama a música de fundo lá do AudioManager
     }
 
