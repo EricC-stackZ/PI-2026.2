@@ -133,19 +133,19 @@ public class TransitionController : MonoBehaviour
         switch (GameData.avancarCena)
         {
             case 2:
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene(6);
             break;
 
             case 3:
-                SceneManager.LoadScene(3);
+                SceneManager.LoadScene(6);
             break;
 
             case 4:
-                SceneManager.LoadScene(4);
+                SceneManager.LoadScene(6);
             break;
 
             case 5:
-                SceneManager.LoadScene(5);
+                SceneManager.LoadScene(6);
             break;
         }
     }
