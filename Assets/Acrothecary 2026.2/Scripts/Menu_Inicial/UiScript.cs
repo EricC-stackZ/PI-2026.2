@@ -35,7 +35,7 @@ public class UiScript : MonoBehaviour
 
         else // Se a variável (contagem) for maior ou igual a 4 (tamanho do vetor [5] - 1) significa que chegou a tela final, e o próximo clique vai mudar de cena.
         {
-            SceneManager.LoadScene(6);
+            SceneManager.LoadScene(1);
         }
 
         contagem++;
