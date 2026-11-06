@@ -16,7 +16,8 @@ public class PoteIngrediente : MonoBehaviour
 
     [Header("Interface Visual")]
     [Tooltip("Arraste o texto (TextMeshPro) que fica em cima da bolinha aqui")]
-    public TextMeshProUGUI textoContador; // O texto que vai mostrar "10", "9" ou a contagem da recarga ("3", "2", "1")
+    public TextMeshProUGUI textoContador; // O texto que vai mostrar "10", "9"
+    public TextMeshProUGUI textoRecarga; // O texto que vai mostrar "3", "2", "1" quando o pote estiver recarregando
 
     [Header("Botões")]
     public Button botaoUsar;        // O botão de clicar no pote para gastar o ingrediente
@@ -78,15 +79,15 @@ public class PoteIngrediente : MonoBehaviour
         if(botaoRecarregar != null) botaoRecarregar.interactable = false;
         
         // Se o texto existir, faz a contagem regressiva na tela
-        if (textoContador != null)
+        if (textoRecarga != null)
         { 
-            textoContador.text = "3";
+            textoRecarga.text = "3";
             yield return new WaitForSeconds(1f);
             
-            textoContador.text = "2";
+            textoRecarga.text = "2";
             yield return new WaitForSeconds(1f);
             
-            textoContador.text = "1";
+            textoRecarga.text = "1";
             yield return new WaitForSeconds(1f);
         }
         else
@@ -116,6 +117,11 @@ public class PoteIngrediente : MonoBehaviour
         {
             // Converte o número inteiro do estoque em texto legível para o TextMeshPro
             textoContador.text = estoqueAtual.ToString();
+        }
+        if (textoRecarga != null)
+        {
+            // Reseta o texto da recarga para 3, caso o jogador clique no botão de recarga antes do tempo
+            textoRecarga.text = "3";
         }
     }
 }

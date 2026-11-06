@@ -22,6 +22,6 @@ public class BookController : MonoBehaviour
 
     public void FecharLivro()
     {
-        livro[0].SetActive(true); livro[1].SetActive(false);
+        livro[0].SetActive(true); livro[1].SetActive(false); livro[2].SetActive(false);
     }
 }
